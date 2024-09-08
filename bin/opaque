@@ -1,0 +1,7 @@
+for i in *; do
+  result=$(identify -format '%[opaque]' "$i")
+
+  if [ "$result" == "false" ]; then
+    echo "$i"
+  fi
+done
