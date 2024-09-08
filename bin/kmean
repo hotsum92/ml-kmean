@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
 import argparse
-import pandas as pd
 import numpy as np
-import os
+import pandas as pd
 import joblib
-from PIL import Image
 from sklearn.cluster import KMeans
 
 parser = argparse.ArgumentParser()
@@ -30,10 +28,10 @@ random_state = args.random_state
 
 kmeans = KMeans(n_clusters=n_clusters, n_init=n_init, max_iter=max_iter, tol=tol, random_state=random_state)
 
-images = np.array([joblib.load(file_path) for file_path in file_paths])
-images = np.array([x.flatten() for x in images])
+data = np.array([joblib.load(file_path) for file_path in file_paths])
+data = np.array([x.flatten() for x in data])
 
-data = pd.DataFrame(data=images)
+data = pd.DataFrame(data=data)
 
 kmeans.fit(data)
 result_labels = kmeans.labels_
